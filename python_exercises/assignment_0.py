@@ -19,6 +19,21 @@ def even_odd(array: list[int]) -> tuple[int, int]:
         sum(i for i in array if i % 2 == 1)
     )
 
+# alternate implementation of question 2
+def even_odd_alternate(array: list[int]) -> tuple[int, int]:
+    esum, osum = 0, 0
+    
+    n = 0
+    while n < len(array):
+        am = array[n]
+
+        if   am % 2 == 0: esum += am
+        elif am % 2 == 1: osum += am
+    
+        n += 1
+    
+    return esum, osum
+
 # question 3:
 class Item:
     def __init__(self, name: str, section: str, price: float) -> None:
