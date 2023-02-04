@@ -1,0 +1,6 @@
+-- First Video (Build Youtube)
+https://www.youtube.com/watch?v=G3e-cpL7ofc
+
+-- Will look into CSS and HTML specifications to better understand syntax
+HTML Specification (https://html.spec.whatwg.org/#metadata-content)
+CSS Specification (https://developer.mozilla.org/en-US/docs/Web/CSS/Reference, https://www.w3.org/TR/selectors-3/)

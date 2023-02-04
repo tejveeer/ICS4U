@@ -1,0 +1,4 @@
+## Current Understanding
+An understanding of web development seems to be related to understanding the relation between the three languages: HTML, CSS and Javascript. Currently, I understand HTML to be the structural aspect of the website, and CSS to be designating its appearance -- or more accurately, behavior. Then, even more fundamentally, javscript seems to be the behavior of the HTML-CSS components in various states. Thus the relationship between the languages seems to be a representation of behavior: HTML is structure, CSS is behavior of structural aspects, and Javascript is behavior of behavior of structural aspects.
+
+The current task is to sufficiently understand the construction of the structure as well as its corresponding behavior; thus HTML and CSS. 
