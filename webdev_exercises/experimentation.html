@@ -1,0 +1,29 @@
+<!-- 
+    Experimenting with selectors and combinators 
+    Selectors seem to be 'selecting' a domain of elements over which you can apply a certain style.
+    Combinators seem to be operations on the level of domains themselves.    
+-->
+
+<style>
+    a[href*="google"] { background-color: red; }
+</style>
+
+<div class="container-1">
+    <a href="https://www.google.com" class="link-1">Link 1</a>
+    <a href="https://www.discord.com" class="link-2">Link 2</a>
+</div>
+<div class="container-2">
+    <a href="https://youtube.com" class="link-1">Link 1</a>
+    <a href="https://amazon.ca" class="link-2">Link 2</a>
+</div>
+<div class="lists">
+    <ul>
+        Useful Links?
+        <ul>
+            <a href="https://www.google.com" class="u-link-1">Google</a>
+        </ul>
+        <ul>
+            <a href="https://www.discord.com" class="u-link-2">Discord</a>
+        </ul>
+    </ul>
+</div>
