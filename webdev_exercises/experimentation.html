@@ -1,48 +1,36 @@
-<!-- 
-    Experimenting with selectors and combinators 
-    Selectors seem to be 'selecting' a domain of elements over which you can apply a certain style.
-    Combinators seem to be operations on the level of domains themselves.    
--->
-
 <style>
-    * { background-color: pink; }
+    div {
+        background-color: lightslategray;
+        border-radius: 10px;
+        width: 200;
+        height: 200;
+    }
 
-    /* > seems to be selecting first-child elements of the parent element */
-    div > a { background-color: yellow; }
-    /* 
-    un-specified operator combinator seems to be looking recursively for the child-element in the parent-element.
-    Perhaps also has a higher specificity than the selector configuration above. 
-    */
-    div a { background-color: aqua;}
+    .box {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        align-items: center;
+    }
 
-    /* Note: there is a significant difference between this and when > operator is included. I'm wondering now whether there can be chained > operators to perform n-depth level search of parents*/
-    div a[href*="https"] { background-color: bisque; }
-    
-    /* 
-    I assumed this would be understood as "select all first-level ul children of div with `a` as their children", however, it seems to be parsed
-    However, it seems to be parsed otherwise. Perhaps it could be a specificity problem, I'll have a look. Yes it is specificity problem. Time to look at how specificity is calculated.
-    */
-    div ul a { background-color: purple; }
-    a[href*="google"] { background-color: red; }
+    p {
+        background-color: lightsteelblue;
+        border-radius: 3px;
+        padding-right: 20px;
+        width: 20px;
+        height: 20px;
+        font-weight: 200;
+    }
+
+    /* Trying to figure out how to make all the items that are not hovered go down when there is a hover */
+    p:hover ~ p:not(:hover) {
+        align-self: flex-end;
+    }
 
 </style>
 
-<div class="container-1">
-    <a href="https://www.google.com" class="link-1">Link 1</a>
-    <a href="https://www.discord.com" class="link-2">Link 2</a>
-</div>
-<div class="container-2">
-    <a href="https://youtube.com" class="link-1">Link 1</a>
-    <a href="https://amazon.ca" class="link-2">Link 2</a>
-</div>
-<div class="lists">
-    <ul>
-        Useful Links?
-        <ul>
-            <a href="https://www.google.com" class="u-link-1">Google</a>
-        </ul>
-        <ul>
-            <a href="https://www.discord.com" class="u-link-2">Discord</a>
-        </ul>
-    </ul>
+<div class="box">
+    <p>One</p>
+    <p>Two</p>
+    <p>Three</p>
 </div>
