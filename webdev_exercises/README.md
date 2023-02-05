@@ -5,3 +5,6 @@ The current task is to sufficiently understand the construction of the structure
 
 ## Current Progress
 1. Have a basic idea of CSS-HTML interaction through tutorials online, now for a more comprehensive understanding, I'll be relying on the specifications and MDN resources. (Feb. 4)
+2. Learned specificity, inheritance, possible selector syntaxes. Going to learn flexbox now. (Feb. 5)
+   1. Currently also investigating how `<div>`, `<section>` and `<article>` differ and which to use in specific contexts.
+   2. Will also look further into combinators and box model after learning basics of flexbox.

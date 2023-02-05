@@ -5,7 +5,26 @@
 -->
 
 <style>
+    * { background-color: pink; }
+
+    /* > seems to be selecting first-child elements of the parent element */
+    div > a { background-color: yellow; }
+    /* 
+    un-specified operator combinator seems to be looking recursively for the child-element in the parent-element.
+    Perhaps also has a higher specificity than the selector configuration above. 
+    */
+    div a { background-color: aqua;}
+
+    /* Note: there is a significant difference between this and when > operator is included. I'm wondering now whether there can be chained > operators to perform n-depth level search of parents*/
+    div a[href*="https"] { background-color: bisque; }
+    
+    /* 
+    I assumed this would be understood as "select all first-level ul children of div with `a` as their children", however, it seems to be parsed
+    However, it seems to be parsed otherwise. Perhaps it could be a specificity problem, I'll have a look. Yes it is specificity problem. Time to look at how specificity is calculated.
+    */
+    div ul a { background-color: purple; }
     a[href*="google"] { background-color: red; }
+
 </style>
 
 <div class="container-1">
