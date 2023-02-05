@@ -1,10 +1,10 @@
 1. Initial Tutorial ([Build Youtube](https://www.youtube.com/watch?v=G3e-cpL7ofc)) 
 
-2. Currently looking into CSS and HTML specifications to better understand syntax
-a. [HTML specification](ttps://html.spec.whatwg.org/#metadata-content)
-b. [CSS specification](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference), [CSS selectors specification](https://drafts.csswg.org/selectors-4/#syntax)
+2. Currently looking into CSS and HTML specifications to better understand syntax   
+    a. [HTML specification](ttps://html.spec.whatwg.org/#metadata-content)
+    b. [CSS specification](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference), [CSS selectors specification](https://drafts.csswg.org/selectors-4/#syntax)
 
-3. Will be working on MDN CSS now as the tutorials are inadequate in terms of providing depth of understanding
+1. Will be working on MDN CSS now as the tutorials are inadequate in terms of providing depth of understanding
 a. Completed *CSS first steps*
 
 ---
