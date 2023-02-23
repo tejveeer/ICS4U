@@ -44,7 +44,7 @@ def data_collector(runs: int) -> Callable:
         return wrapper
     return inner
 
-@data_collector(runs=50)
+@data_collector(runs=100)
 def bubble_sort(points: Points) -> Points:
     for _ in range(len(points) - 1):
         for i in range(len(points) - 1):
@@ -54,7 +54,7 @@ def bubble_sort(points: Points) -> Points:
     
     return points
 
-@data_collector(runs=50)
+@data_collector(runs=100)
 def selection_sort(points: Points) -> Points:
     for marker in range(len(points)):
         min_index = marker
@@ -76,9 +76,9 @@ if __name__ == '__main__':
             for arr_len in arr_lens
         ]
     
-    data = collect_for(range(200), bubble_sort)
+    data = collect_for(range(200), selection_sort)
     x, y = zip(*data)
 
-    plt.scatter(x, y)
+    plt.plot(x, y)
     plt.show()
 # %%

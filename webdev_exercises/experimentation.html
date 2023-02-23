@@ -1,27 +1,63 @@
 <style>
-    * { box-sizing: border-box; }
     body {
-        color: #333;
-        max-width: 960px;
-        margin: 20;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    .item {
-        padding: 10px;
-        border: 5px solid rgb(121, 202, 168);
-        background-color: rgb(206, 244, 228);
-        border-radius: 5px;
+    nav {
+        display: flex;
+        justify-content: center;
+        background-color: lightcoral;
+
+        margin-bottom: 10px;
     }
 
-    .container {
-        
+    ul > li {
+        display: inline-block;
+
+        padding-right: 20px;
+        list-style: none;
+    }
+
+    ul > li > a {
+        text-decoration: none;
+        font-weight: bold;
+
+        color: brown;
+    }
+
+    .content {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        margin-bottom: 0;
+        border-bottom: solid 3px;
+
+        text-align: end;
     }
 </style>
 
-<div class="container">
-    <div class="item">One</div>
-    <div class="item">Two</div>
-    <div class="item">Three has some extra stuff in it, so I'll just be writing this</div>
-    <div class="item">Four</div>
-    <div class="item">Five</div>
+<nav>
+    <ul>
+        <li><a href="#art1">Article 1</a></li>
+        <li><a href="#art2">Article 2</a></li>
+        <li><a href="#art3">Article 3</a></li>
+    </ul>
+</nav>
+
+<div class="content">
+    <article>
+        <h2 id="art1">Article 1</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est earum expedita laborum incidunt alias optio ullam culpa id magnam, amet accusamus delectus adipisci laudantium voluptate, repellat soluta iusto vel nesciunt?</p>
+    </article>
+    <article>
+        <h2 id="art2">Article 2</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est earum expedita laborum incidunt alias optio ullam culpa id magnam, amet accusamus delectus adipisci laudantium voluptate, repellat soluta iusto vel nesciunt?</p>
+    </article>
+    <article>
+        <h2 id="art3">Article 3</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est earum expedita laborum incidunt alias optio ullam culpa id magnam, amet accusamus delectus adipisci laudantium voluptate, repellat soluta iusto vel nesciunt?</p>
+    </article>
 </div>
