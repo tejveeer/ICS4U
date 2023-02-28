@@ -29,18 +29,18 @@ class Point:
     
 Points = list[Point]
 def data_collector(runs: int) -> Callable:
-    def inner(f: Callable[..., Points]) -> Callable:
+    def inner(f: Callable) -> Callable:
     
-        def wrapper(ls: Points) -> tuple[Points, float]:
+        def wrapper(*args):
             store = []
             
             for _ in range(runs):
-                start = time(); f(ls); end = time()
+                start = time(); f(*args); end = time()
                 store.append(end - start)
             
             avg = sum(store) / len(store)
             
-            return (f(ls), avg)        
+            return (f(*args), avg)        
         return wrapper
     return inner
 
@@ -68,17 +68,19 @@ def selection_sort(points: Points) -> Points:
     return points
 
 if __name__ == '__main__':
-    from matplotlib import pyplot as plt
+    import seaborn as sns
+    from pandas import DataFrame as df
 
-    def collect_for(arr_lens: Iterable[int], function: Callable[[Points], Points]) -> list[tuple]:
+    def collect_for(arr_lens: Iterable[int], function: Callable[[Points], Points]) -> list:
         return [
-            (arr_len, function(Point.generate_points(arr_len))[1])
+            [arr_len, function(Point.generate_points(arr_len))[1]]
             for arr_len in arr_lens
         ]
     
     data = collect_for(range(200), selection_sort)
-    x, y = zip(*data)
-
-    plt.plot(x, y)
-    plt.show()
+    print(df(data))
+    sns.regplot(
+        df(data, columns=['# of Points', 'Time']), 
+        order=2
+    )
 # %%
