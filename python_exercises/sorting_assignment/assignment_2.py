@@ -81,6 +81,9 @@ if __name__ == '__main__':
 
         'as_ls_exist': lambda ps: linsearch(insertion_sort(ps), lambda ps: ps[3]),
         'as_ls_nexist': lambda ps: linsearch(insertion_sort(ps), Person('t', 1000)),
+
+        'as_bs_exist': lambda ps: binsearch(insertion_sort(ps), lambda ps: ps[3]),
+        'as_ls_nexist': lambda ps: binsearch(insertion_sort(ps), Person('t', 1000)),
     }
 
     for name, fn in scheme.items():
