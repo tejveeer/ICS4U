@@ -1,6 +1,7 @@
 from random import randint
-from typing import Callable
+from typing import Callable, TypeVar
 
+from pprint import pprint
 from time import time
 
 class Person:
@@ -31,60 +32,98 @@ def insertion_sort(items: Persons) -> Persons:
     return items
 
 # implementing the two searches
-def binsearch(items: Persons, item: Person | Callable[..., Person]) -> bool:
-    if callable(item):
-        item = item(items)
+def binsearch(items: Persons, item: Person) -> bool:
+    left, right = 0, len(items) - 1
 
-    while (item_len := len(items)):
-        half = item_len // 2
-        
-        if   item > items[half]: items = items[half+1:]
-        elif item < items[half]: items = items[:half]
-        else:                    return True
+    while left <= right:
+        middle = (left + right) // 2
+
+        if items[middle] == item:
+            return True
+
+        if items[middle] < item:
+            left = middle + 1
+        elif items[middle] > item:
+            right = middle - 1
+    
     return False
 
-def linsearch(items: Persons, item: Person | Callable[..., Person]) -> bool:
-    if callable(item):
-        item = item(items)
-
+def linsearch(items: Persons, item: Person) -> bool:    
     for it in items:
         if it == item:
             return True
     return False
 
-def generate_ps(length: int) -> Persons:
-    return [Person('t', randint(1, 100)) for _ in range(length)]
+if __name__ == '__main__':
+    def generate_ps(length: int) -> Persons:
+        return [Person('t', randint(1, 100)) for _ in range(length)]
 
-def collect_data(file_name: str, fn: Callable, lengths: list[int], tries: int = 5):
-    # [(l1, [t1, t2, ..., tn], avg), ...]
-    data: list[tuple[int, list[int], float]] = []
-    
-    for length in lengths:
-        times = []
-        for _ in range(tries):
+    RT = TypeVar('RT')    
+    def get_average(runs: int, fn: Callable[..., RT], *args) -> tuple[RT, float]:
+        store = []
+        res = None
+
+        for _ in range(runs):
             start = time()
-            fn(generate_ps(length))
+            r = fn(*args)
             end = time()
 
-            times.append(end - start)
+            store.append(end - start)
+
+            if not res:
+                res = r
         
-        avg = sum(times) / len(times)
-        data.append((length, times, avg))
+        return (res, sum(store) / len(store))
+
+    def data_collector(arrays: list[Persons], fn: Callable[..., RT]) -> list[tuple[RT, float]]:
+        return [
+            get_average(5, fn, array)
+            for array in arrays
+        ]
     
-    with open("python_exercises/sorting_assignment/" + file_name, 'w') as f:
-        f.writelines(f"{length}, {', '.join(map(str, times))}, {avg}\n" for (length, times, avg) in data)
+    def data_saver(file_name: str, av_times: list[float]) -> None:
+        with open('python_exercises/sorting_assignment/' + file_name, 'w') as f:
+            f.writelines(['length, time\n'] + 
+                         [f"{length}, {av_time}\n" for (length, av_time) in zip(lengths, av_times)])
+    
+    def get_second(L: list[tuple]):
+        return [b for (_, b) in L]
+    
+    def generate_files(time_data: dict[str, list[tuple[RT, float]]]) -> None:
+        for name, data in time_data.items():
+            if '|' not in name:
+                file_name = name + '.csv'
+            else:
+                left, right = [sentence.split() for sentence in name.split('|')]
+                file_name = ''.join(word[0] for word in left) + ' ' + '_'.join(right) + '.csv'
 
-if __name__ == '__main__':
-    scheme = {
-        'bs_ls_exist': lambda ps: linsearch(ps, lambda ps: ps[-3]),
-        'bs_ls_nexist': lambda ps: linsearch(ps, Person('t', 1000)),
+            times = get_second(data)
+            data_saver(file_name, times)
 
-        'as_ls_exist': lambda ps: linsearch(insertion_sort(ps), lambda ps: ps[3]),
-        'as_ls_nexist': lambda ps: linsearch(insertion_sort(ps), Person('t', 1000)),
-
-        'as_bs_exist': lambda ps: binsearch(insertion_sort(ps), lambda ps: ps[3]),
-        'as_ls_nexist': lambda ps: binsearch(insertion_sort(ps), Person('t', 1000)),
+    # time to do the dirty work
+    lengths = [5, 10, 100, 1_000, 10_000, 30_000, 50_000, 75_000]
+    arrays = [generate_ps(length) for length in lengths]
+    
+    sort_times = {
+        'python builtin': data_collector(arrays, sorted),
+        'insertion sort': data_collector(arrays, insertion_sort)
     }
 
-    for name, fn in scheme.items():
-        collect_data(f'{name}.csv', fn, [5, 10, 100, 1_000, 10_000, 30_000, 50_000, 75_000])
+    generate_files(sort_times)
+    # collect the sorted arrays from the `sort_times` so that it can be used later
+    s_arrays = [result for (result, _) in sort_times['python builtin']]
+
+    # a person with age=10000 doesn't exist in the arrays since the generation is limited to [1, 100]
+    not_exist = Person('t', 10000)
+    search_times = {
+        'linear search before sort | exists': data_collector(arrays, lambda ps: linsearch(ps, ps[-1])),
+        'linear search before sort | not exists': data_collector(arrays, lambda ps: linsearch(ps, not_exist)),
+
+        'linear search after sort | exists': data_collector(s_arrays, lambda ps: linsearch(ps, ps[-1])),
+        'linear search after sort | not exists': data_collector(s_arrays, lambda ps: linsearch(ps, not_exist)),
+
+        'binary search after sort | exists': data_collector(s_arrays, lambda ps: binsearch(ps, ps[-1])),
+        'binary search after sort | not exists': data_collector(s_arrays, lambda ps: binsearch(ps, not_exist)),
+    }
+
+    generate_files(search_times)
