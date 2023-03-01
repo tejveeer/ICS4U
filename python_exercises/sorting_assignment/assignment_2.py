@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
         for _ in range(runs):
             start = time()
-            r = fn(*args)
+            r = fn(args[0].copy())
             end = time()
 
             store.append(end - start)
@@ -103,10 +103,10 @@ if __name__ == '__main__':
     # time to do the dirty work
     lengths = [5, 10, 100, 1_000, 10_000, 30_000, 50_000, 75_000]
     arrays = [generate_ps(length) for length in lengths]
-    
+
     sort_times = {
-        'python builtin': data_collector(arrays, sorted),
-        'insertion sort': data_collector(arrays, insertion_sort)
+        'insertion sort': data_collector(arrays, insertion_sort),
+        'python builtin': data_collector(arrays, sorted)
     }
 
     generate_files(sort_times)
