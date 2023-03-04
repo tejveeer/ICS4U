@@ -1,7 +1,3 @@
-<script>
-    const li = document.querySelectorAll('ul > li');
-    console.log(li);
-</script>
 
 <style>
     body {
@@ -53,6 +49,17 @@
 
         cursor: pointer;
     }
+
+    .change {
+        background-color: aliceblue;
+        padding: 10px;
+
+        color: brown;
+        font-weight: bolder;
+
+        margin-left: 100px;
+        cursor: pointer;
+    }
 </style>
 
 <body>
@@ -66,4 +73,15 @@
             <li>Marvel</li>
         </ul>
     </div>
+    <div class="change">Change Title</div>
+
+    <script>
+        const randomNames = ["First Name", "Second Name", "Third Name"];
+        const changeBtn = document.querySelector('.change');
+
+        changeBtn.addEventListener('click', e => {
+            const title = document.querySelector('.header');
+            title.innerHTML = randomNames[Math.floor(Math.random() * randomNames.length)];
+        });
+    </script>    
 </body>
