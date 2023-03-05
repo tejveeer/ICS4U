@@ -1,0 +1,79 @@
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: aliceblue;
+        color: brown;
+
+        font-family: monospace;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+
+        gap: 100px;
+    }
+
+    .lists {
+        flex-shrink: 0;
+        position: relative;
+
+        height: inherit;
+        width: 300px;
+
+        padding: 10px;
+        border: solid;
+    }
+
+    .form {
+        position: relative;
+
+        height: inherit;
+        padding: 10px;
+
+        border: solid;
+    }
+
+    .title {
+        position: absolute;
+        top: -10px;
+
+        background-color: aliceblue;
+        padding: 0 5px;
+    }
+
+    .form .field h3 {
+        margin: 10px 0;
+    }
+
+    input {
+        border: solid 2px;
+    }
+</style>
+
+<body>
+    <div class="wrapper">
+        <div class="lists">
+            <div class="title">Lists</div>
+            <div class="hidden"></div>
+        </div>
+        <div class="form">
+            <div class="title">Information</div>
+            <div class="field">
+                <h3>Title</h3>
+                <input type="text" class="inp-title">
+            </div>
+            <div class="field">
+                <h3>Content</h3>
+                <input type="text" class="inp-content">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+
+    </script>
+</body>
