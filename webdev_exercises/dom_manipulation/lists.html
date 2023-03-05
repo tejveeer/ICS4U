@@ -49,15 +49,48 @@
         margin: 10px 0;
     }
 
-    input {
-        border: solid 2px;
-    }
+    input { border: solid; }
 
-    .hidden {
+    .list {
         width: auto;
-        height: calc(20px, max-content);
+        height: 40px;
 
         border: solid;
+
+        display: flex;
+        gap: 5px;
+
+        margin-bottom: 10px;
+    }
+
+    .list-title {
+        padding: 10px;
+        border-right: solid;
+    }
+
+    .content {
+        padding: .5ch;
+        overflow: hidden;
+    }
+
+    .submit {        
+        background-color: brown;
+        color: aliceblue;
+
+        font-weight: bolder;
+
+        margin-top: 10px;
+        padding: 5px;
+
+        text-align: center;
+        cursor: pointer;
+
+        transition: .75s;
+    }
+
+    .submit:hover {
+        background-color: aliceblue;
+        color: brown;
     }
 </style>
 
@@ -65,7 +98,10 @@
     <div class="wrapper">
         <div class="lists">
             <div class="title">Lists</div>
-            <div class="hidden"></div>
+            <!-- <div class="list">
+                <div class="list-title">Title</div>
+                <div class="content">This is just some content that I would like to add over here</div>
+            </div> -->
         </div>
         <div class="form">
             <div class="title">Information</div>
@@ -77,10 +113,41 @@
                 <h3>Content</h3>
                 <input type="text" class="inp-content">
             </div>
+            <div class="submit">
+                Submit Form
+            </div>
         </div>
     </div>
     
     <script>
+        const submitForm = document.querySelector('.submit');
 
+        submitForm.addEventListener('click', e => {
+            const title = document.querySelector('.inp-title');
+            const content = document.querySelector('.inp-content');
+
+            let [titleLength, contentLength] = [title.value.length, content.value.length];
+            if (!(titleLength < 10 && (contentLength > 10 && contentLength < 100))) {
+                alert("Title must be less than 10 characters and content must be in (10, 100) chars.");
+                return;
+            }
+
+            let list = document.createElement('div');
+            list.className = 'list';
+            
+            let listTitle = document.createElement('div');
+            listTitle.className = 'list-title';
+            listTitle.innerHTML = title.value;
+
+            let listContent = document.createElement('div');
+            listContent.className = 'content';
+            listContent.innerHTML = content.value;
+
+            list.appendChild(listTitle);
+            list.appendChild(listContent);
+
+            const lists = document.querySelector('.lists');
+            lists.appendChild(list);
+        });
     </script>
 </body>
