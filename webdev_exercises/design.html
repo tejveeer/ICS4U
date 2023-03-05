@@ -1,0 +1,46 @@
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-family: monospace;
+    }
+
+    .box {
+        border: solid;
+
+        width: 200px;
+        max-height: 100px;
+
+        position: relative;
+        overflow: hidden;
+
+        transition: 1s;
+    }
+
+    .lower-box {
+        background-color: lightblue;
+
+        position: relative;
+        top: 3em;
+
+        transition: .5s;
+    }
+
+    .lower-box:hover { top: 0; }
+    .box:has(.lower-box:hover) { 
+        max-height: 185px;
+        padding: 0;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div>There is some content here</div>
+        <div class="lower-box">
+            <h3>Lower Content</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sunt ipsam, ab fuga consectetur eveniet impedit dolor optio magni sed. Quod inventore aliquid incidunt sint nostrum cum illum rem sed.</p>
+        </div>
+    </div>
+</body>
