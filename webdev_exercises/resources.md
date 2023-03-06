@@ -1,1 +1,0 @@
-1. HTML, CSS and Javascript practice (https://skillcrush.com/blog/projects-you-can-do-with-javascript/#maze)
