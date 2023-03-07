@@ -47,14 +47,39 @@
         border-radius: 4px;
 
         cursor: pointer;
+        transition: 0.5s;
     }
 
-    .show-me:active + .content > ul {
-        content-visibility: visible;
+    .show-me:hover { color: rgb(82, 120, 190) }
+    .show-me:focus + .content > ul {
+        opacity: 1;
     }
 
     .content > ul {
-        content-visibility: hidden;
+        list-style: none;
+
+        margin-top: 20px;
+        padding: 10px;
+        border: solid;
+
+        width: auto;
+        opacity: 0;
+    }
+
+    .content > ul > li {
+        margin-left: 0 auto;
+        padding: 12px;
+    }
+
+    .box {
+        margin-right: 10px;
+        padding: 5px;
+
+        background-color: red;
+        color: rgb(176, 6, 6);
+
+        font-weight: bolder;
+        border-radius: 3px;
     }
 </style>
 
@@ -63,13 +88,27 @@
         <div class="website-title">Epic Mix</div>
         <div class="song-amount">Song Amount!</div>
         
-        <div class="show-me">Show Me!</div>
+        <div class="show-me" tabindex="0">Show Me!</div>
         <div class="content">
             <ul>
-                <li>A</li>
-                <li>B</li>
-                <li>C</li>
             </ul>
         </div>
     </div>
+
+    <script>
+        const mix = [
+            'Hania Rani - Leaving',
+            'Serial Experiments Lain - OP',
+            'The Hu - Chenggis Khaan',
+        ];
+
+        const mixList = document.querySelector('.content > ul');
+        mix.forEach((song, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a class="box">#${index + 1}</a>${song}`;
+
+            console.log(song, index);
+            mixList.appendChild(li);
+        });
+    </script>
 </body>
