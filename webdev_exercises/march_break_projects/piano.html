@@ -1,0 +1,83 @@
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        font-family: monospace;
+        font-size: 1.5rem;
+
+        height: 70vh;
+    }
+
+    .keys {
+        background-color: cadetblue;
+        border: solid 4px rgb(67, 111, 112);
+
+        padding: 5px;
+        display: flex;
+
+        width: 500px;
+        gap: 5px;
+
+        position: relative;
+    }
+
+    .key {
+        background-color: rgb(95, 160, 141);
+
+        height: 300px;
+        border: solid;
+
+        flex: 1 1 0px;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .key[class*="sharp"] {
+        position: absolute;
+        height: 55%;
+        width: 30px;
+
+        background-color: blanchedalmond;
+        padding: 5px;
+    }
+
+    .c-sharp { left: 53px; }
+    .d-sharp { left: 124px; }
+    .f-sharp { left: 268px; }
+    .g-sharp { left: 340px; }
+    .a-sharp { left: 413px; }
+
+    .title {
+        margin-left: 300px;
+        margin-bottom: 10px;
+        color: rgb(112, 81, 34);
+
+        font-weight: bold;
+        border-bottom: solid 5px;
+        border-top: solid 5px;
+    }
+</style>
+
+<body>
+    <div class="title">Tejveer's Piano</div>
+    <div class="keys">
+        <div class="key">C</div>
+        <div class="key c-sharp">C#</div>
+        <div class="key">D</div>
+        <div class="key d-sharp">D#</div>
+        <div class="key">E</div>
+        <div class="key">F</div>
+        <div class="key f-sharp">F#</div>
+        <div class="key">G</div>
+        <div class="key g-sharp">G#</div>
+        <div class="key">A</div>
+        <div class="key a-sharp">A#</div>
+        <div class="key">B</div>
+    </div>
+</body>

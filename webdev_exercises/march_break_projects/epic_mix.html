@@ -102,6 +102,9 @@
             'The Hu - Chenggis Khaan',
         ];
 
+        const songAmount = document.querySelector('.song-amount');
+        songAmount.textContent = `${mix.length} songs!`
+
         const mixList = document.querySelector('.content > ul');
         mix.forEach((song, index) => {
             const li = document.createElement('li');
