@@ -29,7 +29,7 @@
         background-color: rgb(95, 160, 141);
 
         height: 300px;
-        border: solid;
+        border: solid black;
 
         flex: 1 1 0px;
 
@@ -67,17 +67,49 @@
 <body>
     <div class="title">Tejveer's Piano</div>
     <div class="keys">
-        <div class="key">C</div>
-        <div class="key c-sharp">C#</div>
-        <div class="key">D</div>
-        <div class="key d-sharp">D#</div>
-        <div class="key">E</div>
-        <div class="key">F</div>
-        <div class="key f-sharp">F#</div>
-        <div class="key">G</div>
-        <div class="key g-sharp">G#</div>
-        <div class="key">A</div>
-        <div class="key a-sharp">A#</div>
-        <div class="key">B</div>
+        <div class="key c">A</div>
+        <div class="key c-sharp">W</div>
+        <div class="key d">S</div>
+        <div class="key d-sharp">E</div>
+        <div class="key e">D</div>
+        <div class="key f">F</div>
+        <div class="key f-sharp">T</div>
+        <div class="key g">G</div>
+        <div class="key g-sharp">Y</div>
+        <div class="key a">H</div>
+        <div class="key a-sharp">U</div>
+        <div class="key b">J</div>
     </div>
+
+    <!-- <audio src="http://carolinegabriel.com/demo/js-keyboard/sounds/040.wav" data-key="C"></audio> -->
+
+    <script>
+        const keyMap = {
+            'a': 'c',
+            'w': 'c-sharp',
+            's': 'd',
+            'e': 'd-sharp',
+            'd': 'e',
+            'f': 'f',
+            't': 'f-sharp',
+            'g': 'g',
+            'y': 'g-sharp',
+            'h': 'a',
+            'u': 'a-sharp',
+            'j': 'b'
+        };
+
+        document.addEventListener('keydown', e => {
+            if (e.key in keyMap) {
+                const keyName = keyMap[e.key];
+                const keyIndex = Object.values(keyMap).indexOf(keyName);
+
+                const key = document.querySelector(`.${keyName}`);
+                const audio = document.createElement('audio');
+
+                audio.setAttribute('src', `http://carolinegabriel.com/demo/js-keyboard/sounds/0${40 + keyIndex}.wav`);
+                audio.play();
+            }
+        });
+    </script>
 </body>
