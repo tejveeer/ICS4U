@@ -1,0 +1,56 @@
+
+body {
+    height: 100vh;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+$bg-color: rgb(86, 31, 86);
+#circle {
+    height: 50px;
+    width: 50px;
+
+    background-color: $bg-color;
+    border-radius: 50%;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+
+    color: white;
+
+    transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#circle::before {
+    content: '';
+    position: absolute;
+
+    height: 50px;
+    width: 50px;
+
+    background-color: $bg-color;
+    border-radius: 50%;
+
+    animation: expand 3s infinite;
+    z-index: -1;
+}
+
+@keyframes expand {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.4;
+    }
+}
