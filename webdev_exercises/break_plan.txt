@@ -1,8 +1,8 @@
 1. DOM Manipulation Practice (https://skillcrush.com/blog/projects-you-can-do-with-javascript/#maze)
-    a. Epic Mix Playlist
-    b. Piano
-    c. Speech Detection
-    d. Sliding Navigation
+    a. Epic Mix Playlist [Done]
+    b. Piano             [Done]
+    c. Speech Detection  [Will not be doing, seems unnecessary]
+    d. Sliding Navigation [Done]
 -- Should be done by the end of this week
     e. Pokemon React generator
     f. Wordled game
