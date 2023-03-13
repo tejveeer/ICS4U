@@ -1,139 +1,138 @@
 <style>
-	
     :root {
         --width: 250px;
         --height: var(--width);
 
-		--box-padding: 1rem;
-		--adj-width: calc(var(--width) - 2rem);
-		--adj-height: calc(var(--height) - 2rem);
+        --box-padding: 1rem;
+        --adj-width: calc(var(--width) - 2rem);
+        --adj-height: calc(var(--height) - 2rem);
 
         --mid-height: calc(var(--adj-height) / 2);
     }
 
-	body {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         overflow: hidden;
 
-		font-family: monospace;
-		font-size: 1.3rem;
-	}
+        font-family: monospace;
+        font-size: 1.3rem;
+    }
 
-	.container {
-		display: flex;
-		position: relative;
+    .container {
+        display: flex;
+        position: relative;
 
         right: var(--mid-height);
-	}
+    }
 
     .container > * {
         height: var(--adj-height);
         width: var(--adj-width);
 
-		padding: 1rem;
+        padding: 1rem;
     }
 
-	.box {
-		transition: 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
-		cursor: pointer;
-	}
+    .box {
+        transition: 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+        cursor: pointer;
+    }
 
     .box > * {
         width: inherit;
         height: var(--mid-height);
 
-		display: flex;
-		align-items: center;
+        display: flex;
+        align-items: center;
     }
 
-	.box > *::before {
-		content: '';
+    .box > *::before {
+        content: '';
 
-		height: calc(var(--mid-height) - 10px);
-		width: 10px;
+        height: calc(var(--mid-height) - 10px);
+        width: 10px;
 
-		margin-right: 10px;
-		transition: background-color 0.2s;
-	}
+        margin-right: 10px;
+        transition: background-color 0.2s;
+    }
 
-	.main { background-color: lightcoral; }
+    .main { background-color: lightcoral; }
     .n1 { background-color: lightblue; }
-	.n2 { background-color: lightgreen; }
+    .n2 { background-color: lightgreen; }
 
-	.main > .about::before { background-color: brown; }
-	.main > .contact::before { background-color: rgb(218, 57, 57); }
-	.main > *:hover::before { background-color: red; }
+    .main > .about::before { background-color: brown; }
+    .main > .contact::before { background-color: rgb(218, 57, 57); }
+    .main > *:hover::before { background-color: red; }
 
-	.n1 > .name::before { background-color: rgb(62, 101, 113); }
-	.n1 > .school::before { background-color: rgb(109, 175, 195); }
-	.n1 > *:hover::before { background-color: rgb(92, 215, 253); }
+    .n1 > .name::before { background-color: rgb(62, 101, 113); }
+    .n1 > .school::before { background-color: rgb(109, 175, 195); }
+    .n1 > *:hover::before { background-color: rgb(92, 215, 253); }
 
-	.n2 > .contact-1::before { background-color: green; }
-	.n2 > .contact-2::before { background-color: rgb(0, 197, 0); }
-	.n2 > *:hover::before { background-color: rgb(82, 212, 82); }
+    .n2 > .contact-1::before { background-color: green; }
+    .n2 > .contact-2::before { background-color: rgb(0, 197, 0); }
+    .n2 > *:hover::before { background-color: rgb(82, 212, 82); }
 
-	.container > :not(.main, .side) {
-		position: absolute;
-		left: 100%;
-	}
+    .container > :not(.main, .side) {
+        position: absolute;
+        left: 100%;
+    }
 
-	.side {
-		z-index: 2;
+    .side {
+        z-index: 2;
         background-color: white;
-	}
+    }
 
-	.right {
-		position: absolute;
-		left: 100%;
-	}
+    .right {
+        position: absolute;
+        left: 100%;
+    }
 </style>
 
 <body>
-	<div class="container">
+    <div class="container">
         <div class="side"></div>
-		<div class="box main">
+        <div class="box main">
             <div class="about">About</div>
             <div class="contact">Contact</div>
         </div>
-		<div class="box n1">
-			<div class="name">Tejveer</div>
-			<div class="school">TLK</div>
-		</div>
-		<div class="box n2">
-			<div class="contact-1">Discord</div>
-			<div class="contact-2">Email</div>
-		</div>
+        <div class="box n1">
+            <div class="name">Tejveer</div>
+            <div class="school">TLK</div>
+        </div>
+        <div class="box n2">
+            <div class="contact-1">Discord</div>
+            <div class="contact-2">Email</div>
+        </div>
         <div class="side right"></div>
-	</div>
+    </div>
 
-	<script>
-		const eventMap = {
-			'.about': '.n1',
-			'.name': '.main',
-			'.school': '.main',
+    <script>
+        const eventMap = {
+            '.about': '.n1',
+            '.name': '.main',
+            '.school': '.main',
 
-			'.contact': '.n2',
-			'.contact-1': '.main',
-			'.contact-2': '.main',
-		}
+            '.contact': '.n2',
+            '.contact-1': '.main',
+            '.contact-2': '.main',
+        }
 
-		const main = document.querySelector(".main");
+        const main = document.querySelector(".main");
         const width = getComputedStyle(document.body)
                         .getPropertyValue('--width')
                         .trim();
 
-		for (const [fst, snd] of Object.entries(eventMap)) {
-			const [fstD, sndD] = [document.querySelector(fst), document.querySelector(snd)];
-			const fstParent = fstD.parentElement;
+        for (const [fst, snd] of Object.entries(eventMap)) {
+            const [fstD, sndD] = [document.querySelector(fst), document.querySelector(snd)];
+            const fstParent = fstD.parentElement;
 
-			const translateAm = fstParent == main ? `-${width}` : `0px`;
-			fstD.addEventListener('click', () => {
-				fstParent.style.transform = `translate(${translateAm})`;
-				sndD.style.transform = `translate(${translateAm})`
-			});			
-		}
-	</script>
+            const translateAm = fstParent == main ? `-${width}` : `0px`;
+            fstD.addEventListener('click', () => {
+                fstParent.style.transform = `translate(${translateAm})`;
+                sndD.style.transform = `translate(${translateAm})`
+            });			
+        }
+    </script>
 </body>
