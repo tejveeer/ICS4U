@@ -6,6 +6,10 @@ body {
     justify-content: center;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .blog {
     display: flex;
     width: 70vw;
