@@ -50,7 +50,6 @@ nav > a:hover {
 #reflections {
     position: absolute;
     top: 50vh;
-    left: 50vw;
 
     border-bottom: solid 2px;
     color: #E59C23;
