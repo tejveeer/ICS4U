@@ -15,18 +15,30 @@ body {
 
 .table-of-content {
     align-self: flex-start;
+    
     position: sticky;
+    top: calc(4px + 2rem);
 
     flex: 0 0 auto;
     width: min-content;
     padding-right: 10px;
 
-    border: solid;
+    padding: 10px;
+    background-color: rgba(165, 42, 42, 0.808);
+    border-radius: 5px;
+
+    color: white;
 }
 
-.table-of-content ul {
+.table-of-content > ul {
+    margin: 0;
     list-style-type: none;
-    padding-left: 10px;
+    padding: 0;
+}
+
+.table-of-content > ul ul {
+    list-style-type: none;
+    padding-left: 30px;
 }
 
 #title,
