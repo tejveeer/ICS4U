@@ -12,14 +12,14 @@
     <div class="blog">
         <div class="table-of-content">
             <ul>
-                <li>
+                <!-- <li>
                     First Heading
                     <ul><li>Sub-Heading</li></ul>
                 </li>
                 <li>
                     Second Heading
                     <ul><li>Sub-Heading</li></ul>
-                </li>
+                </li> -->
             </ul>
         </div>
         <div class="content">
@@ -44,5 +44,27 @@
             </section>
         </div>
     </div>
+
+    <script>
+        const tableContent = document.querySelector('.table-of-content > ul');
+        const contents = document.querySelectorAll('.content > section');
+
+        // parses the table of content hierarchy from the blog content
+        const hierarchies = Object.values(contents)
+            .map(section => {
+                return Object.values(section.children)
+                             .filter(node => node.tagName == "H3" || node.tagName == "H4")
+                             .map(node => node.textContent)
+            });
+        
+        for (const hierarchy of hierarchies) {
+            const node = document.createElement('li');
+            node.innerHTML = hierarchy.length == 2 
+                           ? `${hierarchy[0]}<ul><li>${hierarchy[1]}</li></ul>`
+                           : `${hierarchy[0]}`;
+            
+            tableContent.appendChild(node)
+        }
+    </script>
 </body>
 </html>
